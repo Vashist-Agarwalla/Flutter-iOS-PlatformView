@@ -10,6 +10,7 @@
 		1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */ = {isa = PBXBuildFile; fileRef = 1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */; };
 		23401E4B2B2C82ED000B4A00 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23401E4A2B2C82ED000B4A00 /* SwiftUIView.swift */; };
 		23401E4D2B2C87E3000B4A00 /* FLNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23401E4C2B2C87E3000B4A00 /* FLNativeView.swift */; };
+		23401E512B2CAB04000B4A00 /* BatteryObjectiveCClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 23401E502B2CAB04000B4A00 /* BatteryObjectiveCClass.m */; };
 		331C808B294A63AB00263BE5 /* RunnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331C807B294A618700263BE5 /* RunnerTests.swift */; };
 		3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */; };
 		74858FAF1ED2DC5600515810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
@@ -46,6 +47,8 @@
 		1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedPluginRegistrant.m; sourceTree = "<group>"; };
 		23401E4A2B2C82ED000B4A00 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		23401E4C2B2C87E3000B4A00 /* FLNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FLNativeView.swift; sourceTree = "<group>"; };
+		23401E502B2CAB04000B4A00 /* BatteryObjectiveCClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BatteryObjectiveCClass.m; sourceTree = "<group>"; };
+		23401E522B2CAB99000B4A00 /* BatteryObjectiveCClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BatteryObjectiveCClass.h; sourceTree = "<group>"; };
 		331C807B294A618700263BE5 /* RunnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerTests.swift; sourceTree = "<group>"; };
 		331C8081294A63A400263BE5 /* RunnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RunnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B3967151E833CAA004F5970 /* AppFrameworkInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = AppFrameworkInfo.plist; path = Flutter/AppFrameworkInfo.plist; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
 				23401E4A2B2C82ED000B4A00 /* SwiftUIView.swift */,
+				23401E502B2CAB04000B4A00 /* BatteryObjectiveCClass.m */,
+				23401E522B2CAB99000B4A00 /* BatteryObjectiveCClass.h */,
 				23401E4C2B2C87E3000B4A00 /* FLNativeView.swift */,
 			);
 			path = Runner;
@@ -278,6 +283,7 @@
 				23401E4D2B2C87E3000B4A00 /* FLNativeView.swift in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
 				23401E4B2B2C82ED000B4A00 /* SwiftUIView.swift in Sources */,
+				23401E512B2CAB04000B4A00 /* BatteryObjectiveCClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

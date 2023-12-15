@@ -9,10 +9,25 @@ import Flutter
     ) -> Bool {
         GeneratedPluginRegistrant.register(with: self)
         
-        weak var registrar = self.registrar(forPlugin: "plugin-name")
-        let factory = FLNativeViewFactory(messenger: registrar!.messenger())
-        self.registrar(forPlugin: "<plugin-name>")!.register(
-            factory,
+        let controller = window?.rootViewController as! FlutterViewController
+        
+        let batteryChannel = FlutterMethodChannel(
+            name: "battery_channel",
+            binaryMessenger: controller.binaryMessenger
+        )
+    
+        batteryChannel.setMethodCallHandler { [weak self] (call, result) in
+            if call.method == "getBatteryPercentage" {
+                let batteryPercentage = BatteryObjectiveCClass.getBatteryPercentage()
+                result(batteryPercentage)
+            } else {
+                result(FlutterMethodNotImplemented)
+            }
+        }
+
+        let nativeViewFactory = FLNativeViewFactory(messenger: controller.binaryMessenger)
+        self.registrar(forPlugin: "SwiftUIView")!.register(
+            nativeViewFactory,
             withId: "MySwiftUIView"
         )
         
