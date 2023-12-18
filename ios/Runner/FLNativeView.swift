@@ -9,6 +9,12 @@ import Flutter
 import SwiftUI
 import UIKit
 
+/// A Flutter platform view factory for creating native views in Flutter.
+///
+/// The `FLNativeViewFactory` class implements `FlutterPlatformViewFactory` and is responsible for
+/// creating instances of the `FLNativeView` class. It integrates the Flutter framework with a native
+/// iOS view, allowing the rendering of a SwiftUI view (`SwiftUIView`) within a Flutter application.
+///
 class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     private let messenger: FlutterBinaryMessenger
     
@@ -25,8 +31,7 @@ class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
         return FLNativeView(
             frame: frame,
             viewIdentifier: viewId,
-            arguments: args,
-            binaryMessenger: messenger
+            arguments: args
         )
     }
     
@@ -35,14 +40,19 @@ class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
     }
 }
 
+/// A Flutter platform view representing a native view in Flutter.
+///
+/// The `FLNativeView` class implements `FlutterPlatformView` and contains the logic for creating and
+/// managing a native view in a Flutter application. It integrates a SwiftUI view (`SwiftUIView`) within
+/// the native view hierarchy, allowing seamless interoperability between Flutter and SwiftUI.
+///
 class FLNativeView: NSObject, FlutterPlatformView {
     private let containerView: UIView
     
     init(
         frame: CGRect,
         viewIdentifier viewId: Int64,
-        arguments args: Any?,
-        binaryMessenger messenger: FlutterBinaryMessenger
+        arguments args: Any?
     ) {
         containerView = UIView()
         super.init()

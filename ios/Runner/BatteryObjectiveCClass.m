@@ -10,11 +10,15 @@
 
 @implementation BatteryObjectiveCClass
 
+/// Retrieves the battery percentage of the device.
 + (NSInteger)getBatteryPercentage {
+    // Access the current device and enable battery monitoring.
     UIDevice *device = [UIDevice currentDevice];
     device.batteryMonitoringEnabled = YES;
+    
+    // Calculate the battery level as a percentage.
     NSInteger batteryLevel = (NSInteger)(device.batteryLevel * 100);
-
+    
     return batteryLevel;
 }
 
