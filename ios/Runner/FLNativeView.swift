@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
-    private var messenger: FlutterBinaryMessenger
+    private let messenger: FlutterBinaryMessenger
     
     init(messenger: FlutterBinaryMessenger) {
         self.messenger = messenger
@@ -36,41 +36,44 @@ class FLNativeViewFactory: NSObject, FlutterPlatformViewFactory {
 }
 
 class FLNativeView: NSObject, FlutterPlatformView {
-    private var _view: UIView
+    private let containerView: UIView
     
     init(
         frame: CGRect,
         viewIdentifier viewId: Int64,
         arguments args: Any?,
-        binaryMessenger messenger: FlutterBinaryMessenger?
+        binaryMessenger messenger: FlutterBinaryMessenger
     ) {
-        _view = UIView()
+        containerView = UIView()
         super.init()
-        createNativeView(view: _view, arguments: args)
-    }
-    func view() -> UIView {
-        return _view
+        createNativeView(view: containerView, arguments: args)
     }
     
-    func createNativeView(view _view: UIView, arguments args: Any?){
+    func createNativeView(view containerView: UIView, arguments args: Any?) {
+        guard let keyWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? UIApplication.shared.windows.first,
+              let topController = keyWindow.rootViewController else {
+            return
+        }
         
-        let keyWindows = UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? UIApplication.shared.windows.first
-        let topController = keyWindows?.rootViewController
+        let hostingController = UIHostingController(rootView: SwiftUIView())
         
-        let vc = UIHostingController(rootView: SwiftUIView())
-        let swiftuiView = vc.view!
-        swiftuiView.translatesAutoresizingMaskIntoConstraints = false
+        let hostingView = hostingController.view!
+        hostingView.translatesAutoresizingMaskIntoConstraints = false
         
-        topController!.addChild(vc)
-        _view.addSubview(swiftuiView)
+        topController.addChild(hostingController)
+        containerView.addSubview(hostingView)
         
         NSLayoutConstraint.activate([
-            swiftuiView.leadingAnchor.constraint(equalTo: _view.leadingAnchor),
-            swiftuiView.trailingAnchor.constraint(equalTo: _view.trailingAnchor),
-            swiftuiView.topAnchor.constraint(equalTo: _view.topAnchor),
-            swiftuiView.bottomAnchor.constraint(equalTo: _view.bottomAnchor)
+            hostingView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            hostingView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            hostingView.topAnchor.constraint(equalTo: containerView.topAnchor),
+            hostingView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
         ])
         
-        vc.didMove(toParent: topController)
+        hostingController.didMove(toParent: topController)
+    }
+    
+    func view() -> UIView {
+        return containerView
     }
 }

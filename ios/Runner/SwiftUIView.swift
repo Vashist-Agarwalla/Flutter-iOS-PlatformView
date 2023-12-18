@@ -8,17 +8,11 @@
 import SwiftUI
 
 struct SwiftUIView: View {
-//    var onButtonTap: () -> Void
-//
-//    init(onButtonTap: @escaping () -> Void) {
-//        self.onButtonTap = onButtonTap
-//    }
-
     var body: some View {
         ZStack {
             Color.red
             Button{
-//                onButtonTap()
+                EventHandler.eventHandlerInstance.sendEvent("ButtonClickedEvent")
             } label: {
                 Text("Get Battery")
             }
@@ -30,6 +24,6 @@ struct SwiftUIView: View {
     }
 }
 
-//#Preview {
-//    SwiftUIView()
-//}
+#Preview {
+   SwiftUIView()
+}

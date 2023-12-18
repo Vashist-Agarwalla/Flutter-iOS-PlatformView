@@ -25,9 +25,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String _batteryPercentage = '';
+  late EventChannel _eventChannel;
+
   static const batteryChannel = MethodChannel('battery_channel');
 
-  // Call this function to get the battery percentage
+  @override
+  void initState() {
+    super.initState();
+
+    _eventChannel = const EventChannel('get_battery_event');
+    _eventChannel.receiveBroadcastStream().listen(
+      (event) {
+        print('Button clicked! Event: $event');
+        getBatteryPercentage();
+      },
+      onError: (error) {
+        print('Error receiving event: $error');
+      },
+    );
+  }
+
   Future<void> getBatteryPercentage() async {
     try {
       final int result = await batteryChannel.invokeMethod('getBatteryPercentage');
@@ -60,12 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
             Text(
               'Battery Percentage: $_batteryPercentage',
               style: Theme.of(context).textTheme.titleLarge,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                getBatteryPercentage();
-              },
-              child: const Text('Get Battery Percentage'),
             ),
           ],
         ),
