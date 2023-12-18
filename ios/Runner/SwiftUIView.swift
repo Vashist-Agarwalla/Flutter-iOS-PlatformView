@@ -10,8 +10,10 @@ import SwiftUI
 struct SwiftUIView: View {
     var body: some View {
         ZStack {
-            Color.red
-            Button{
+            Image("Horse")
+                .resizable()
+                .frame(width: 300, height: 200)
+            Button {
                 EventHandler.eventHandlerInstance.sendEvent("ButtonClickedEvent")
             } label: {
                 Text("Get Battery")

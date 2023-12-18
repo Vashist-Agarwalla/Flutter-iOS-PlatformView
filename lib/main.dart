@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 creationParams: {},
               ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 200),
             Text(
               'Battery Percentage: $_batteryPercentage',
               style: Theme.of(context).textTheme.titleLarge,
